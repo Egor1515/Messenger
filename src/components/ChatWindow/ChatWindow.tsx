@@ -7,17 +7,55 @@ const ChatWindow: React.FC = () => {
 
   const handleChatClick = () => {
     setShowChat(prevState => !prevState);
-    console.log('hello');
+
   };
 
+  const chatData = [
+    {
+      sender: 'William Smith',
+      timestamp: '6 months ago',
+      subject: 'Meeting Tomorrow',
+      message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
+    },
+    {
+      sender: 'William Smith',
+      timestamp: '6 months ago',
+      subject: 'Meeting Tomorrow',
+      message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
+    },
+    {
+      sender: 'William Smith',
+      timestamp: '6 months ago',
+      subject: 'Meeting Tomorrow',
+      message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
+    },
+    {
+      sender: 'William Smith',
+      timestamp: '6 months ago',
+      subject: 'Meeting Tomorrow',
+      message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
+    },
+    {
+      sender: 'William Smith',
+      timestamp: '6 months ago',
+      subject: 'Meeting Tomorrow',
+      message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
+    },
+  ]
+  // const Hook = useHook()
   return (
     <div className="chat-window overflow-y-auto w-full">
       <div className="flex items-center px-4 py-2">
         <h1 className='text-xl text-secondary-foreground '>Message</h1>
         <div className='inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground ml-auto'>
+          {/* <Hook/> */}
           <ToggleGroup type="single">
-            <ToggleGroupItem onClick={() => {handleChatClick()}} className="focus:outline-none focus:ring focus:ring-teal-600 focus:ring-opacity-50" value="All messages">All messages</ToggleGroupItem>
-            <ToggleGroupItem className="focus:outline-none focus:ring focus:ring-teal-600 focus:ring-opacity-50" value="Unread">Unread</ToggleGroupItem>
+            {(!showChat && (
+              <ToggleGroupItem onClick={() => { handleChatClick() }} className="focus:outline-none focus:ring focus:ring-teal-600 focus:ring-opacity-50" value="All messages">All messages</ToggleGroupItem>
+            ))}
+            {(showChat && (
+              <ToggleGroupItem className="focus:outline-none focus:ring focus:ring-teal-600 focus:ring-opacity-50" value="Unread">Unread</ToggleGroupItem>
+            ))}
           </ToggleGroup>
         </div>
       </div>
@@ -33,26 +71,22 @@ const ChatWindow: React.FC = () => {
             </form>
           </div>
           <div className='h-full w-full rounded-[inherit]'>
+
             <div className='flex flex-col gap-2 p-4 pt-0'>
-
-              <button className="flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent bg-muted" onClick={() => handleChatClick()}>
-
-                <div className="flex w-full flex-col gap-1">
-                  <div className="flex items-center">
-                    <div className="flex items-center gap-2 font-semibold">William Smith</div>
-                    <div className="ml-auto text-xs text-foreground">6 months ago</div>
+              {chatData.map((chat, index) => (
+                <button key={index} className="border hover:border-l-teal-600 hover:border-l-8 transition:translate-x-0 hover:translate-x-4 flex flex-col items-start gap-2 rounded-lg p-3 text-left text-sm transition-all hover:bg-accent bg-muted" onClick={() => handleChatClick()}>
+                  <div className="flex w-full flex-col gap-1">
+                    <div className="flex items-center">
+                      <div className="flex items-center gap-2 font-semibold">{chat.sender}</div>
+                      <div className="ml-auto text-xs text-foreground">{chat.timestamp}</div>
+                    </div>
+                    <div className="text-xs font-medium">{chat.subject}</div>
                   </div>
-                  <div className="text-xs font-medium">Meeting Tomorrow</div>
-                </div>
-                <div className="line-clamp-2 text-xs text-muted-foreground">
-                  Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground shadow hover:bg-primary hover:text-white">Meeting</div>
-                  <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground shadow hover:bg-primary hover:text-white">Work</div>
-                  <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground shadow hover:bg-primary hover:text-white">Important</div>
-                </div>
-              </button>
+                  <div className="line-clamp-2 text-xs text-muted-foreground">
+                    {chat.message}
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </>
