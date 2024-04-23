@@ -1,5 +1,3 @@
-// index.tsx (или index.js, если вы не используете TypeScript)
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ChatList.css';
 import ChatInput from '../ChatInput/ChatInput';
-
+import UserHeader from '../UserHeader/UserHeader';
 
 const ChatList = ({ handleChatClick }: { handleChatClick: () => void }) => {
   const chats = [
@@ -53,11 +53,12 @@ const ChatList = ({ handleChatClick }: { handleChatClick: () => void }) => {
   ];
 
   return (
-    <div className='flex flex-col gap-5 h-full'>
+    <div className='flex flex-col gap-5 h-full justify-between'>
+      <UserHeader></UserHeader>
       {chats.map((chat, index) => (
         <div
           key={chat.id}
-          className={`flex justify-${index % 2 === 0 ? 'end' : 'start'} mt-5 m${index % 2 === 0 ? 'r-3' : 'l-3'}  items-start gap-2.5`}
+          className={`flex justify-${index % 2 === 0 ? 'end' : 'start'} mt-5 ml-5 gap-2.5`}
         >
           <div className='flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700'>
             <div className='flex items-center space-x-2 rtl:space-x-reverse'>
@@ -82,7 +83,9 @@ const ChatList = ({ handleChatClick }: { handleChatClick: () => void }) => {
         </div>
       ))
       }
-  <ChatInput/>
+      <div className=' h-full w-full'>
+        <ChatInput />
+      </div>
     </div>
   );
 };

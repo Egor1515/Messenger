@@ -8,21 +8,21 @@ import UserPost from './components/UserPost/UserPost';
 import Settings from './components/Settings/Settings';
 import Authorize from './components/Authorize/Authorize';
 import StateProvider from './stateContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App: React.FC = () => {
   return (
-    <StateProvider>
-
+    <Router>
       <div className="app">
         <Sidebar />
         <ChatWindow />
         <UserInfo />
-        {/* <UserScreen></UserScreen> */}
-        {/* <UserPost></UserPost> */}
-        {/* <Settings></Settings> */}
-        {/* <Authorize></Authorize> */}
+        {/* <UserScreen></UserScreen>
+        <UserPost></UserPost>
+        <Settings></Settings>
+      <Authorize></Authorize> */}
       </div>
-    </StateProvider>
+    </Router>
   );
 };
 

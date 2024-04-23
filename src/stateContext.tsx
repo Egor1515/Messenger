@@ -1,28 +1,22 @@
 import React, { createContext, useReducer, useContext, ReactNode, Reducer } from 'react';
 
-// Определяем типы действий для редуктора
 export type ActionType = 'HOME' | 'CONTACTS' | 'NOTIFICATIONS' | 'CHATS' | 'SETTINGS';
 
-// Определяем тип состояния
 export type State = {
   currentComponent: ActionType;
 };
 
-// Инициализируем начальное состояние
 export const initialState: State = {
   currentComponent: 'HOME',
 };
 
-// Определяем контекст для хранения состояния и диспетчера
 type StateContextType = {
   state: State;
   dispatch: React.Dispatch<ActionType>;
 };
 
-// Создаем контекст для состояния
 const StateContext = createContext<StateContextType | undefined>(undefined);
 
-// Создаем хук для получения текущего состояния из контекста
 export const useStateValue = (): StateContextType => {
   const context = useContext(StateContext);
   if (!context) {
@@ -31,7 +25,6 @@ export const useStateValue = (): StateContextType => {
   return context;
 };
 
-// Определяем редуктор для обработки действий и обновления состояния
 const stateReducer: Reducer<State, ActionType> = (state, action) => {
   switch (action) {
     case 'HOME':
@@ -49,7 +42,6 @@ const stateReducer: Reducer<State, ActionType> = (state, action) => {
   }
 };
 
-// Создаем обертку-провайдер для обеспечения доступа к состоянию через контекст
 export const StateProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(stateReducer, initialState);
 
