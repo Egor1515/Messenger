@@ -6,6 +6,7 @@ import AllChats from '../AllChats/AllChats';
 import Settings from '../Settings/Settings';
 import Authorize from '../Authorize/Authorize';
 import PostSkeleton from '../PostSkeleton/PostSkeleton';
+import ChatList from '../ChatList/Chatlist';
 
 const ChatWindow: React.FC = () => {
 
@@ -20,7 +21,8 @@ const ChatWindow: React.FC = () => {
         <Route path="/chats" element={<AllChats />} />
         <Route path="" element={<AllChats />} />
         <Route path="/login" element={<Authorize />} />
-        <Route path="/create-post" element={<PostSkeleton />} />
+        <Route path="/userchat" element={<ChatList />} />
+        <Route path="/create-post" element={<PostSkeleton onPost={() => {}}/>} />
       </Routes>
     </div>
   );

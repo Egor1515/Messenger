@@ -1,9 +1,8 @@
 import React from 'react';
-import './ChatList.css';
 import ChatInput from '../ChatInput/ChatInput';
 import UserHeader from '../UserHeader/UserHeader';
-
-const ChatList = ({ handleChatClick }: { handleChatClick: () => void }) => {
+import './ChatList.css'
+const ChatList:React.FC = () => {
   const chats = [
     {
       id: 1,
@@ -53,14 +52,14 @@ const ChatList = ({ handleChatClick }: { handleChatClick: () => void }) => {
   ];
 
   return (
-    <div className='flex flex-col gap-5 h-full justify-between'>
+    <div className='flex flex-col gap-5 h-full justify-between '>
       <UserHeader></UserHeader>
       {chats.map((chat, index) => (
         <div
           key={chat.id}
           className={`flex justify-${index % 2 === 0 ? 'end' : 'start'} mt-5 ml-5 gap-2.5`}
         >
-          <div className='flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700'>
+          <div className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 ${index % 2 === 0 ? 'bg-orange-200':'bg-gray-200'} rounded-e-xl rounded-es-xl `}>
             <div className='flex items-center space-x-2 rtl:space-x-reverse'>
               <span className='text-sm font-semibold text-gray-900 dark:text-white'>{chat.name}</span>
               <span className='text-sm font-normal text-gray-500 dark:text-gray-400'>{chat.time}</span>
@@ -74,7 +73,7 @@ const ChatList = ({ handleChatClick }: { handleChatClick: () => void }) => {
             id={`dropdownMenuIconButton-${chat.id}`}
             data-dropdown-toggle={`dropdownDots-${chat.id}`}
             data-dropdown-placement='bottom-start'
-            className='inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600'
+            className='inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-white-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-white-900 dark:hover:bg-white-800 dark:focus:ring-gray-600'
             type='button'
           >
           </button>
