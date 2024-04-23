@@ -1,3 +1,4 @@
+import { NewPostInterface } from "@/types/NewPostInterface";
 import React, { useState } from "react";
 
 const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) => {
@@ -5,7 +6,7 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
     const [description, setDescription] = useState("");
 
     const handlePost = () => {
-        const newPost = {
+        const newPost: NewPostInterface = {
             name: "John Doe",
             avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             postText: description,

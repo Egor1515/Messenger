@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthService from './AuthService';
-import './Authorize.css';
 
 const Authorize: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Инициализация AuthService с функцией навигации
         AuthService.initialize(navigate);
     }, [navigate]);
 

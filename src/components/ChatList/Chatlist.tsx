@@ -2,8 +2,10 @@ import React from 'react';
 import ChatInput from '../ChatInput/ChatInput';
 import UserHeader from '../UserHeader/UserHeader';
 import './ChatList.css'
+import { ChatListInterface } from '@/types/ChatListInterface';
+
 const ChatList:React.FC = () => {
-  const chats = [
+  const chats: ChatListInterface[] = [
     {
       id: 1,
       name: 'Bonnie Green',
