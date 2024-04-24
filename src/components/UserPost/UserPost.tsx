@@ -1,85 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IUserPostData } from "@/types/IUserPostData";
 
-const mockUserData: IUserPostData[] = [
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
-    {
-        name: "John Doe",
-        avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        postText: "Hypnosis in the parallel universe was the advice of alarm, commanded to a conscious ship. Processors experiment with paralysis!",
-        postedAt: "10 months ago",
-        images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-        likesCount: 23,
-        liked: false
-    },
 
-];
+
 
 const UserPost: React.FC = () => {
-    const [userData, setUserData] = useState(mockUserData);
-
+    const [userData, setUserData] = useState<IUserPostData[]>([]);
+    
+    useEffect(() => {
+        const fetchUserPosts = async () => {
+            try {
+                const response = await fetch("https://api.example.com/user/posts");
+                if (response.ok) {
+                    const data = await response.json();
+                    setUserData(data);
+                } else {
+                    console.error("Failed to fetch user posts");
+                }
+            } catch (error) {
+                console.error("Error fetching user posts:", error);
+            }
+        };
+    
+        fetchUserPosts();
+    }, []);
+    
     const handleLikeToggle = (index: number) => {
         const updatedUserData = [...userData];
         const updatedPost = { ...updatedUserData[index] };
@@ -90,7 +35,7 @@ const UserPost: React.FC = () => {
     };
 
     return (
-        <div className="w-4/6 m-auto mt-4 mb-4 flex flex-col items-center bg-white-900">
+<div style={{ backgroundImage: "url('https://static1.bigstockphoto.com/8/1/9/large1500/91805066.jpg')" }} className="w-4/6 m-auto mt-4 mb-4 flex flex-col items-center bg-white-900">
             {userData.map((userData, index) => (
                 <div key={index} className="text-black border border-orange-200 rounded-lg w-full mt-5 mx-5 md:w-[40rem] space-y-6 p-10 bg-white-800">
                     <div className="flex space-x-4 items-center">

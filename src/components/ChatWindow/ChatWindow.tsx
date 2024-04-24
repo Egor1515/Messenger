@@ -12,7 +12,9 @@ const ChatWindow: React.FC = () => {
 
 
   return (
-    <div className="chat-window overflow-y-auto w-full h-screen">
+    <div className="chat-window overflow-y-auto w-full h-screen bg-opacity-10" style={{ 
+      backgroundImage: "url('https://static1.bigstockphoto.com/8/1/9/large1500/91805066.jpg')",
+    }}>
       <div className='bg-border h-[1px] w-full'></div>
       <Routes>
         <Route path="/home" element={<UserScreen />} />

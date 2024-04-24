@@ -3,5 +3,6 @@ export interface IUserPersonalInfo {
     bio: string;
     location: string;
     email: string,
-    job: string
+    job: string,
+    avatarUrl: string
 }

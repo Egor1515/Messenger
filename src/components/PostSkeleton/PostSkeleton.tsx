@@ -5,7 +5,7 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
-    const handlePost = () => {
+    const handlePost = async () => {
         const newPost: NewPostInterface = {
             name: "John Doe",
             avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
@@ -16,9 +16,27 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
             liked: false
         };
 
-        onPost(newPost);
-        setTitle("");
-        setDescription("");
+        try {
+            const response = await fetch('https://api.example.com/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newPost)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to create new post');
+            }
+
+            const data = await response.json();
+            console.log('New post created successfully:', data);
+            onPost(newPost);
+            setTitle("");
+            setDescription("");
+        } catch (error) {
+            console.error('Error creating new post:', error);
+        }
     };
 
     return (

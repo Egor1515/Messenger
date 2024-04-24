@@ -1,44 +1,31 @@
-import React, { useState } from "react";
-import { ChatInfoInterface } from "@/types/ChatInfoInterface";
-import ChatList from "../ChatList/Chatlist";
+import React, { useEffect, useState } from "react"
+import { ChatInfoInterface } from "@/types/ChatInfoInterface"
+import ChatList from "../ChatList/Chatlist"
 
 const AllChats: React.FC = () => {
     const [showChat, setShowChat] = useState(true);
+    const [chatData, setChatData] = useState<ChatInfoInterface[]>([])
 
     const handleChatClick = () => {
-        setShowChat(prevState => !prevState);
+        setShowChat(prevState => !prevState)
     };
 
-    const chatData: ChatInfoInterface[] = [
-        {
-            sender: 'William Smith',
-            timestamp: '6 months ago',
-            subject: 'Meeting Tomorrow',
-            message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
-            unread: true,
-        },
-        {
-            sender: 'William Smith',
-            timestamp: '6 months ago',
-            subject: 'Meeting Tomorrow',
-            message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
-            unread: false,
-        },
-        {
-            sender: 'William Smith',
-            timestamp: '6 months ago',
-            subject: 'Meeting Tomorrow',
-            message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
-            unread: true,
-        },
-        {
-            sender: 'William Smith',
-            timestamp: '6 months ago',
-            subject: 'Meeting Tomorrow',
-            message: `Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success. Please come prepared with any questions or insights you may have. Looking forward to`,
-            unread: true,
-        },
-    ];
+    useEffect(() => {
+        const fetchChatData = async () => {
+            try {
+                const response = await fetch('https://api.example.com/chats')
+                if (!response.ok) {
+                    throw new Error('Failed to fetch chat data')
+                }
+                const data = await response.json();
+                setChatData(data)
+            } catch (error) {
+                console.error('Error fetching chat data:', error)
+            }
+        };
+
+        fetchChatData()
+    }, []);
 
     return (
         <div className='h-full w-full'>
@@ -52,6 +39,11 @@ const AllChats: React.FC = () => {
                                     className='flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8'
                                     placeholder='Search'
                                 />
+                                <div className="flex mt-5 justify-end gap-5">
+                                    <a href=""><div className="active:bg-orange-500 hover:opacity-9 cursor-pointer inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80">Work</div></a>
+                                    <a href=""><div className="active:bg-orange-500 hover:opacity-9 cursor-pointer inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">Life</div></a>
+                                    <a href=""><div className="active:bg-orange-500 hover:opacity-9 cursor-pointer inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">Balance</div></a>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -69,6 +61,11 @@ const AllChats: React.FC = () => {
                                     </div>
                                     <div className="ml-auto text-xs text-foreground">{chat.timestamp}</div>
                                     <div className="text-xs font-medium">{chat.subject}</div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80">Work</div>
+                                        <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">Life</div>
+                                        <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">Balance</div>
+                                    </div>
                                 </div>
                                 <div className="line-clamp-2 text-xs text-muted-foreground">{chat.message}</div>
                             </button>

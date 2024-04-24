@@ -1,52 +1,51 @@
+import React, { useEffect, useState } from "react";
 import { IStatisticData } from "@/types/StatisticDataInterface";
-import React from "react";
-
+import StatItem from "../StatItem/StatItem";
 
 const Statistic: React.FC = () => {
-    const mockStatisticData: IStatisticData = {
-        users: 2700,
-        subscribes: 1800,
-        downloads: 35,
-        products: 4,
-    };
+    const [statistic, setStatistic] = useState<IStatisticData | null>(null);
+
+    useEffect(() => {
+        const fetchStatistic = async () => {
+            try {
+                const response = await fetch('https://api.example.com/statistic');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setStatistic(data);
+            } catch (error) {
+                console.error('Error fetching statistic data:', error);
+            }
+        };
+
+        fetchStatistic();
+    }, []);
+
     return (
-        <section className="text-gray-600 body-font h-full">
-            <div className="container px-5 py-12 mx-auto">
+        <section className="text-gray-600 body-font">
+            <div className="container py-2 mx-auto">
                 <div className="flex flex-wrap w-full mb-8">
-                    <div className="w-full mb-6 lg:mb-0">
+                    <div className="w-full lg:mb-0">
                         <h1 className="sm:text-4xl text-5xl font-medium title-font mb-2 text-gray-900">Statistic</h1>
                         <div className="h-1 w-20 bg-orange-500 rounded"></div>
                     </div>
                 </div>
                 <div className="flex flex-wrap -m-4 text-center">
-                    <div className="p-4 sm:w-1/4 w-1/2">
-                        <div className="bg-orange-500 rounded-lg p-2 xl:p-6">
-                            <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">2.7K</h2>
-                            <p className="leading-relaxed text-gray-100 font-bold">Users</p>
-                        </div>
-                    </div>
-                    <div className="p-4 sm:w-1/4 w-1/2">
-                        <div className="bg-orange-500 rounded-lg p-2 xl:p-6">
-                            <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">1.8K</h2>
-                            <p className="leading-relaxed text-gray-100 font-bold">Subscribes</p>
-                        </div>
-                    </div>
-                    <div className="p-4 sm:w-1/4 w-1/2">
-                        <div className="bg-orange-500 rounded-lg p-2 xl:p-6">
-                            <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">35</h2>
-                            <p className="leading-relaxed text-gray-100 font-bold">Downloads</p>
-                        </div>
-                    </div>
-                    <div className="p-4 sm:w-1/4 w-1/2">
-                        <div className="bg-orange-500 rounded-lg p-2 xl:p-6">
-                            <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">4</h2>
-                            <p className="leading-relaxed text-gray-100 font-bold">Products</p>
-                        </div>
-                    </div>
+                    {statistic && (
+                        <>
+                            <StatItem value={statistic.users} label="Users" />
+                            <StatItem value={statistic.subscribes} label="Subscribes" />
+                            <StatItem value={statistic.downloads} label="Downloads" />
+                            <StatItem value={statistic.products} label="Products" />
+                        </>
+                    )}
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Statistic
+
+
+export default Statistic;

@@ -1,4 +1,4 @@
-export interface ChatListInterface {
+export interface IChatListInterface {
     id: number,
     name: string,
     time: string,

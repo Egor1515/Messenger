@@ -1,57 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatInput from '../ChatInput/ChatInput';
 import UserHeader from '../UserHeader/UserHeader';
-import './ChatList.css'
-import { ChatListInterface } from '@/types/ChatListInterface';
 
-const ChatList:React.FC = () => {
-  const chats: ChatListInterface[] = [
-    {
-      id: 1,
-      name: 'Bonnie Green',
-      time: '11:46',
-      message: "That's awesome. I think our users will really appreciate the improvements.",
-      delivered: true,
-    },
-    {
-      id: 2,
-      name: 'Alice White',
-      time: '12:15',
-      message: 'Sure, let me know if you need any help with that.',
-      delivered: false,
-    }, {
-      id: 2,
-      name: 'Alice White',
-      time: '12:15',
-      message: 'Sure, let me know if you need any help with that.',
-      delivered: false,
-    }, {
-      id: 2,
-      name: 'Alice White',
-      time: '12:15',
-      message: 'Sure, let me know if you need any help with that.',
-      delivered: false,
-    }, {
-      id: 2,
-      name: 'Alice White',
-      time: '12:15',
-      message: 'Sure, let me know if you need any help with that.',
-      delivered: false,
-    }, {
-      id: 2,
-      name: 'Alice White',
-      time: '12:15',
-      message: 'Sure, let me know if you need any help with that.',
-      delivered: false,
-    },
-    {
-      id: 3,
-      name: 'Alice White',
-      time: '12:15',
-      message: 'Sure, let me know if you need any help with that.',
-      delivered: false,
-    },
-  ];
+import { IChatListInterface } from '@/types/IChatListInterface';
+
+const ChatList: React.FC = () => {
+  const [chats, setChats] = useState<IChatListInterface[]>([])
+
+  useEffect(() => {
+    const fetchChatData = async () => {
+      try {
+        const response = await fetch('https://api.example.com/chats');
+        if (!response.ok) {
+          throw new Error('Failed to fetch chat data');
+        }
+        const data = await response.json();
+        setChats(data);
+      } catch (error) {
+        console.error('Error fetching chat data:', error);
+      }
+    };
+
+    fetchChatData();
+  }, []);
 
   return (
     <div className='flex flex-col gap-5 h-full justify-between '>
@@ -61,7 +32,7 @@ const ChatList:React.FC = () => {
           key={chat.id}
           className={`flex justify-${index % 2 === 0 ? 'end' : 'start'} mt-5 ml-5 gap-2.5`}
         >
-          <div className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 ${index % 2 === 0 ? 'bg-orange-200':'bg-gray-200'} rounded-e-xl rounded-es-xl `}>
+          <div className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 ${index % 2 === 0 ? 'bg-orange-200' : 'bg-gray-200'} rounded-e-xl rounded-es-xl `}>
             <div className='flex items-center space-x-2 rtl:space-x-reverse'>
               <span className='text-sm font-semibold text-gray-900 dark:text-white'>{chat.name}</span>
               <span className='text-sm font-normal text-gray-500 dark:text-gray-400'>{chat.time}</span>
