@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Egor1515/Messenger/static/css/main.5ce4aa1c.css",
-    "main.js": "/Egor1515/Messenger/static/js/main.6ce0479d.js",
-    "static/js/453.78aafdce.chunk.js": "/Egor1515/Messenger/static/js/453.78aafdce.chunk.js",
-    "index.html": "/Egor1515/Messenger/index.html",
-    "main.5ce4aa1c.css.map": "/Egor1515/Messenger/static/css/main.5ce4aa1c.css.map",
-    "main.6ce0479d.js.map": "/Egor1515/Messenger/static/js/main.6ce0479d.js.map",
-    "453.78aafdce.chunk.js.map": "/Egor1515/Messenger/static/js/453.78aafdce.chunk.js.map"
+    "main.css": "/%7BMessenger%7D/static/css/main.5ce4aa1c.css",
+    "main.js": "/%7BMessenger%7D/static/js/main.fcc14a00.js",
+    "static/js/453.78aafdce.chunk.js": "/%7BMessenger%7D/static/js/453.78aafdce.chunk.js",
+    "index.html": "/%7BMessenger%7D/index.html",
+    "main.5ce4aa1c.css.map": "/%7BMessenger%7D/static/css/main.5ce4aa1c.css.map",
+    "main.fcc14a00.js.map": "/%7BMessenger%7D/static/js/main.fcc14a00.js.map",
+    "453.78aafdce.chunk.js.map": "/%7BMessenger%7D/static/js/453.78aafdce.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5ce4aa1c.css",
-    "static/js/main.6ce0479d.js"
+    "static/js/main.fcc14a00.js"
   ]
 }
