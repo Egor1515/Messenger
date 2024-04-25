@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { ChatInfoInterface } from "@/types/ChatInfoInterface"
 import ChatList from "../ChatList/Chatlist"
 import { formatDistanceToNow } from "date-fns";
+import { ToggleGroup, ToggleGroupItem } from "../../components/ui/toggle-group"
 
 const AllChats: React.FC = () => {
     const [showChat, setShowChat] = useState(true);
@@ -19,10 +20,10 @@ const AllChats: React.FC = () => {
                     throw new Error('Failed to fetch chat data')
                 }
                 const data = await response.json();
-                const updatedChatData = data.map((chat:any) => ({
+                const updatedChatData = data.map((chat: any) => ({
                     ...chat,
                     timestamp: formatDistanceToNow(new Date(chat.timestamp), { addSuffix: true }),
-                
+
                 }));
                 setChatData(updatedChatData);
             } catch (error) {
@@ -45,11 +46,12 @@ const AllChats: React.FC = () => {
                                     className='flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8'
                                     placeholder='Search'
                                 />
-                                <div className="flex mt-5 justify-end gap-5">
-                                    <a href=""><div className="active:bg-emerald-500 hover:opacity-9 cursor-pointer inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80">Work</div></a>
-                                    <a href=""><div className="active:bg-emerald-500 hover:opacity-9 cursor-pointer inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">Life</div></a>
-                                    <a href=""><div className="active:bg-emerald-500 hover:opacity-9 cursor-pointer inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">Balance</div></a>
-                                </div>
+                                <ToggleGroup className="flex justify-end mt-3" type="single">
+                                    <ToggleGroupItem value="Work">Work</ToggleGroupItem>
+                                    <ToggleGroupItem value="Life">Life</ToggleGroupItem>
+                                    <ToggleGroupItem value="Balance">Balance</ToggleGroupItem>
+                                </ToggleGroup>
+
                             </div>
                         </form>
                     </div>
@@ -57,13 +59,13 @@ const AllChats: React.FC = () => {
                         {chatData.map((chat, index) => (
                             <button
                                 key={index}
-                                className={`border ${chat.unread ? 'border-white-200' : 'border-emerald-200'} hover:border-l-emerald-500 hover:border-l-8 transition:translate-x-0 hover:translate-x-4 flex flex-col items-start gap-2 rounded-lg p-3 text-left text-sm transition-all ${chat.unread ? 'bg-emerald-200' : 'bg-white-200'}`}
+                                className={`border ${chat.unread ? 'border-white-200' : 'border-orange-200'} hover:border-l-orange-500 hover:border-l-8 transition:translate-x-0 hover:translate-x-4 flex flex-col items-start gap-2 rounded-lg p-3 text-left text-sm transition-all ${chat.unread ? 'bg-orange-200' : 'bg-white-200'}`}
                                 onClick={() => handleChatClick()}
                             >
                                 <div className="flex w-full flex-col gap-1 bg-orangy-200">
                                     <div className="flex gap-2 w-full items-center">
                                         <div className="flex items-center gap-2 font-semibold">{chat.sender}</div>
-                                        {chat.unread && <span className="flex h-2 w-2 rounded-full bg-emerald-600"></span>}
+                                        {chat.unread && <span className="flex h-2 w-2 rounded-full bg-orange-600"></span>}
                                     </div>
                                     <div className="ml-auto text-xs text-foreground">{chat.timestamp}</div>
                                     <div className="text-xs font-medium">{chat.subject}</div>

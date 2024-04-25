@@ -44,7 +44,7 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
     return (
         <div>
             <div className="heading text-center font-bold text-2xl m-5 text-gray-800">Tell people something new</div>
-            <div className="rounded bg-emerald-200 editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+            <div className="rounded bg-orange-200 editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
                 <input
                     className="title bg-white-200 border border-gray-300 p-2 mb-4 outline-none"
                     placeholder="Title"
@@ -67,12 +67,13 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
                         onClick={() => {
                             setTitle("");
                             setDescription("");
+                            navigate('/notifications')
                         }}
                     >
                         Cancel
                     </div>
                     <div
-                        className="btn border rounded p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-emerald-500"
+                        className="btn border rounded p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-orange-500"
                         onClick={handlePost}
                     >
                         Post

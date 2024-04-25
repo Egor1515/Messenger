@@ -48,7 +48,7 @@ const Earnings: React.FC = () => {
                                     <span className="text-[13px] font-medium text-red-500">{data.earning}</span>
                                 </td>
                                 <td className="py-2 px-4 border-b border-b-gray-50">
-                                    <span className={`inline-block p-1 rounded ${data.status === 'Pending' ? 'text-yellow-600' : 'text-emerald-500 '} font-medium text-[12px] leading-none`}>{data.status}</span>
+                                    <span className={`inline-block p-1 rounded ${data.status === 'Pending' ? 'text-yellow-600' : 'text-orange-500 '} font-medium text-[12px] leading-none`}>{data.status}</span>
                                 </td>
                             </tr>
                         ))}

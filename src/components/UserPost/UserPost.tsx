@@ -34,7 +34,7 @@ const UserPost: React.FC = () => {
     return (
 <div className=" m-auto mt-4 mb-4 flex flex-col items-center bg-white-900 w-full h-full">
             {userData.map((userData, index) => (
-                <div key={index} className="text-black border border-emerald-200 rounded-lg mt-5 mx-5 md:w-[40rem] space-y-6 p-10 bg-white-800">
+                <div key={index} className="text-black border-2 border-orange-200 rounded-lg mt-5 mx-5 md:w-[40rem] space-y-6 p-10 bg-white-800">
                     <div className="flex space-x-4 items-center ">
                         <div className="w-12 h-12">
                             <img alt="avatar" src={userData.avatarUrl} className="rounded-full w-full h-full object-cover" />
@@ -42,7 +42,7 @@ const UserPost: React.FC = () => {
                         <div className="space-y-2">
                             <div className="flex space-x-2 items-center">
                                 <h2 className="text-black">{userData.name}</h2>
-                                <svg className="h-4 w-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <svg className="h-4 w-4 text-orange-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 <div className="text-xs text-slate-600">posted an update</div>
@@ -58,7 +58,7 @@ const UserPost: React.FC = () => {
                     </div>
                     <div className="flex justify-between pt-5">
                         <button onClick={() => handleLikeToggle(index)}>
-                            <i className={`fa-${userData.liked ? "solid" : "regular"} fa-heart text-emerald-500`}></i>
+                            <i className={`fa-${userData.liked ? "solid" : "regular"} fa-heart text-orange-500`}></i>
                         </button>
                         <div className="text-slate-400 text-sm">
                             <p>{userData.likesCount} likes</p>

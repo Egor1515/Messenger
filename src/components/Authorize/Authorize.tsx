@@ -64,20 +64,20 @@ const Authorize: React.FC = () => {
                         />
                         <button
                             type="submit"
-                            className="w-full py-3 mt-10 bg-emerald-500 rounded-sm
+                            className="w-full py-3 mt-10 bg-orange-500 rounded-sm
                             font-medium text-white uppercase
-                            focus:outline-none hover:bg-emerald-600 hover:shadow-none"
+                            focus:outline-none hover:bg-orange-600 hover:shadow-none"
                         >
                             Login
                         </button>
                         <div className="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-                            <a href="" className="flex-2 underline">
+                            <a href="#" className="flex-2 underline">
                                 Forgot password?
                             </a>
                             <p className="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
                                 or
                             </p>
-                            <a href="" className="flex-2 underline">
+                            <a href="#" className="flex-2 underline">
                                 Create an Account
                             </a>
                         </div>
