@@ -10,7 +10,7 @@ const ChatList: React.FC = () => {
   useEffect(() => {
     const fetchChatData = async () => {
       try {
-        const response = await fetch('https://api.example.com/chats');
+        const response = await fetch('http://localhost:8888/api/chat-data.php');
         if (!response.ok) {
           throw new Error('Failed to fetch chat data');
         }
@@ -25,7 +25,7 @@ const ChatList: React.FC = () => {
   }, []);
 
   return (
-    <div className='flex flex-col gap-5 h-full justify-between '>
+    <div className='flex flex-col gap-5 h-full justify-between relative'>
       <UserHeader></UserHeader>
       {chats.map((chat, index) => (
         <div
@@ -55,7 +55,7 @@ const ChatList: React.FC = () => {
         </div>
       ))
       }
-      <div className=' h-full w-full'>
+      <div className='sticky bottom-0 w-full bg-white'>
         <ChatInput />
       </div>
     </div>

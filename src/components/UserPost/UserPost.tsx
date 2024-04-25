@@ -10,7 +10,7 @@ const UserPost: React.FC = () => {
     useEffect(() => {
         const fetchUserPosts = async () => {
             try {
-                const response = await fetch("https://api.example.com/user/posts");
+                const response = await fetch("http://localhost:8888/api/user-posts.php");
                 if (response.ok) {
                     const data = await response.json();
                     setUserData(data);
@@ -35,7 +35,7 @@ const UserPost: React.FC = () => {
     };
 
     return (
-<div style={{ backgroundImage: "url('https://static1.bigstockphoto.com/8/1/9/large1500/91805066.jpg')" }} className="w-4/6 m-auto mt-4 mb-4 flex flex-col items-center bg-white-900">
+<div className="w-4/6 m-auto mt-4 mb-4 flex flex-col items-center bg-white-900">
             {userData.map((userData, index) => (
                 <div key={index} className="text-black border border-orange-200 rounded-lg w-full mt-5 mx-5 md:w-[40rem] space-y-6 p-10 bg-white-800">
                     <div className="flex space-x-4 items-center">

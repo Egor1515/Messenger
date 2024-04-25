@@ -1,22 +1,20 @@
 import { NavigateFunction } from 'react-router-dom';
-
-interface LoginData {
-    username: string;
-    password: string;
-}
+import { useState } from 'react';
+import { ILoginData } from '@/types/ILoginData';
 
 let navigate: NavigateFunction | null = null;
 
 const AuthService = {
+    
     initialize: (navigateFunction: NavigateFunction): void => {
         navigate = navigateFunction;
     },
 
-    login: (data: LoginData): boolean => {
-        const { username, password } = data;
+    login: (data: ILoginData): boolean => {
+        const { email, password } = data;
         const fakeKey = '898qweqwejqo4274qoij4124';
 
-        if (username && password) {
+        if (email && password) {
             localStorage.setItem('username', fakeKey);
             return true;
         }
@@ -24,24 +22,29 @@ const AuthService = {
         return false;
     },
 
-    handleLogin: (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault();
+    async handleLogin(email: string, password: string): Promise<string | null> {
+        try {
+            const response = await fetch('http://localhost:8888/api/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
 
-        if (!navigate) {
-            console.error('Navigation function is not initialized.');
-            return;
-        }
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
 
-        const formData = new FormData(event.currentTarget);
-        const username = formData.get('email') as string;
-        const password = formData.get('password') as string;
-
-        const loginSuccess = AuthService.login({ username, password });
-        if (loginSuccess) {
-            navigate('/home');
-            console.log('Login successful');
-        } else {
-            console.log('Invalid username or password');
+            const data = await response.json();
+            if (data.token) {
+                return data.token;
+            } else {
+                throw new Error('Invalid response from server');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            return null; 
         }
     },
 

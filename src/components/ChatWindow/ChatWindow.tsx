@@ -7,18 +7,17 @@ import Settings from '../Settings/Settings';
 import Authorize from '../Authorize/Authorize';
 import PostSkeleton from '../PostSkeleton/PostSkeleton';
 import ChatList from '../ChatList/Chatlist';
-
+import UserOwnPost from '../UserOwnPost/UserOwnPost';
 const ChatWindow: React.FC = () => {
 
 
   return (
-    <div className="chat-window overflow-y-auto w-full h-screen bg-opacity-10" style={{ 
-      backgroundImage: "url('https://static1.bigstockphoto.com/8/1/9/large1500/91805066.jpg')",
-    }}>
+    <div className="chat-window overflow-y-auto w-full h-screen bg-opacity-10"  >
       <div className='bg-border h-[1px] w-full'></div>
       <Routes>
         <Route path="/home" element={<UserScreen />} />
         <Route path="/notifications" element={<UserPost />} />
+        <Route path="/my-posts" element={<UserOwnPost/>} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/chats" element={<AllChats />} />
         <Route path="" element={<AllChats />} />

@@ -1,13 +1,32 @@
-import React, { useEffect } from 'react';
+// Authorize.tsx
+
+import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthService from './AuthService';
 
 const Authorize: React.FC = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        AuthService.initialize(navigate);
-    }, [navigate]);
+    const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
+
+        try {
+            const token = await AuthService.login({email,password});
+            if (token) {
+                navigate('/home');
+            } else {
+                setError('Failed to login');
+            }
+        } catch (error) {
+            console.error('Error logging in:', error);
+            setError('Failed to login');
+        }
+    };
 
     return (
         <div className="flex flex-col w-full h-full bg-white-100">
@@ -18,7 +37,7 @@ const Authorize: React.FC = () => {
                     <h2 className="text-center font-semibold text-3xl lg:text-4xl text-gray-800">
                         Login
                     </h2>
-                    <form className="mt-10" onSubmit={AuthService.handleLogin}>
+                    <form className="mt-10" onSubmit={handleLogin}>
                         <label htmlFor="email" className="block text-xs font-semibold text-gray-600 uppercase">E-mail</label>
                         <input
                             id="email"

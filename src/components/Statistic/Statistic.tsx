@@ -3,16 +3,17 @@ import { IStatisticData } from "@/types/StatisticDataInterface";
 import StatItem from "../StatItem/StatItem";
 
 const Statistic: React.FC = () => {
-    const [statistic, setStatistic] = useState<IStatisticData | null>(null);
+    const [statistic, setStatistic] = useState<IStatisticData[] | null>(null);
 
     useEffect(() => {
         const fetchStatistic = async () => {
             try {
-                const response = await fetch('https://api.example.com/statistic');
+                const response = await fetch('http://localhost:8888/api/statistic.php');
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
                 const data = await response.json();
+                console.log(data)
                 setStatistic(data);
             } catch (error) {
                 console.error('Error fetching statistic data:', error);
@@ -34,10 +35,10 @@ const Statistic: React.FC = () => {
                 <div className="flex flex-wrap -m-4 text-center">
                     {statistic && (
                         <>
-                            <StatItem value={statistic.users} label="Users" />
-                            <StatItem value={statistic.subscribes} label="Subscribes" />
-                            <StatItem value={statistic.downloads} label="Downloads" />
-                            <StatItem value={statistic.products} label="Products" />
+                            <StatItem value={statistic[0].users} label="Users" />
+                            <StatItem value={statistic[0].subscribes} label="Subs" />
+                            <StatItem value={statistic[0].downloads} label="Likes" />
+                            <StatItem value={statistic[0].products} label="Products" />
                         </>
                     )}
                 </div>

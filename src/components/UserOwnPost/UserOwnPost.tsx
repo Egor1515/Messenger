@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Statistic from "../Statistic/Statistic";
-import Earnings from "../Earnings/Earnings";
+
 import { IUserPersonalInfo } from "@/types/IUserPersonalInfo";
 import { useNavigate } from "react-router-dom";
+import UserPost from "../UserPost/UserPost";
 
-const UserScreen: React.FC = () => {
+const UserOwnPost: React.FC = () => {
     const navigate = useNavigate()
     const [userData, setUserData] = useState<IUserPersonalInfo | null>(null);
 
@@ -28,7 +28,7 @@ const UserScreen: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex  w-full h-full ml-3">
+        <div className="flex  w-full h-full">
             <div className="w-full h-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-white-800">
                 <img className="object-cover object-center w-full h-80" src={userData?.avatarUrl} alt="avatar" />
 
@@ -77,12 +77,11 @@ const UserScreen: React.FC = () => {
                     )}
                 </div>
             </div>
-            <div className=" flex flex-col h-full">
-                <Statistic />
-                <Earnings />
+            <div className="overflow-y-auto flex flex-col h-full">
+                    <UserPost></UserPost>
             </div>
         </div>
     );
 };
 
-export default UserScreen;
+export default UserOwnPost;

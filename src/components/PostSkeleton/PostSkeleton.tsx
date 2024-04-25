@@ -1,23 +1,25 @@
 import { NewPostInterface } from "@/types/NewPostInterface";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const navigate = useNavigate()
 
     const handlePost = async () => {
         const newPost: NewPostInterface = {
             name: "John Doe",
             avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             postText: description,
-            postedAt: new Date().toLocaleString(),
+            postedAt: new Date().toISOString(),
             images: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
             likesCount: 0,
             liked: false
         };
 
         try {
-            const response = await fetch('https://api.example.com/posts', {
+            const response = await fetch('http://localhost:8888/api/new-post.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,12 +30,11 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
             if (!response.ok) {
                 throw new Error('Failed to create new post');
             }
-
             const data = await response.json();
-            console.log('New post created successfully:', data);
             onPost(newPost);
             setTitle("");
             setDescription("");
+            navigate('/notifications')
         } catch (error) {
             console.error('Error creating new post:', error);
         }

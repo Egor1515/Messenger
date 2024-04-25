@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { ChatInfoInterface } from "@/types/ChatInfoInterface"
 import ChatList from "../ChatList/Chatlist"
+import { formatDistanceToNow } from "date-fns";
 
 const AllChats: React.FC = () => {
     const [showChat, setShowChat] = useState(true);
@@ -13,12 +14,17 @@ const AllChats: React.FC = () => {
     useEffect(() => {
         const fetchChatData = async () => {
             try {
-                const response = await fetch('https://api.example.com/chats')
+                const response = await fetch('http://localhost:8888/api/chats.php')
                 if (!response.ok) {
                     throw new Error('Failed to fetch chat data')
                 }
                 const data = await response.json();
-                setChatData(data)
+                const updatedChatData = data.map((chat:any) => ({
+                    ...chat,
+                    timestamp: formatDistanceToNow(new Date(chat.timestamp), { addSuffix: true }),
+                    unread: chat.unread === '1' ? true : false
+                }));
+                setChatData(updatedChatData);
             } catch (error) {
                 console.error('Error fetching chat data:', error)
             }
