@@ -8,7 +8,7 @@ const Statistic: React.FC = () => {
     useEffect(() => {
         const fetchStatistic = async () => {
             try {
-                const response = await fetch('http://localhost:8888/api/statistic.php');
+                const response = await fetch('http://localhost/api/statistic.php');
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }

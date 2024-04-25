@@ -20,7 +20,7 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
         };
 
         try {
-            const response = await fetch('http://localhost:8888/api/new-post.php', {
+            const response = await fetch('http://localhost/api/new-post.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

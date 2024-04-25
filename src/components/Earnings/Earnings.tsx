@@ -7,7 +7,7 @@ const Earnings: React.FC = () => {
     useEffect(() => {
         const fetchEarnings = async () => {
             try {
-                const response = await fetch('http://localhost:8888/api/earnings.php');
+                const response = await fetch('http://localhost/api/earnings.php');
                 if (!response.ok) {
                     throw new Error('Failed to fetch earnings data  ');
                 }

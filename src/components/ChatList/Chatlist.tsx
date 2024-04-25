@@ -10,7 +10,7 @@ const ChatList: React.FC = () => {
   useEffect(() => {
     const fetchChatData = async () => {
       try {
-        const response = await fetch('http://localhost:8888/api/chat-data.php');
+        const response = await fetch('http://localhost/api/chat-data.php');
         if (!response.ok) {
           throw new Error('Failed to fetch chat data');
         }

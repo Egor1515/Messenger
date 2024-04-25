@@ -24,7 +24,7 @@ const AuthService = {
 
     async handleLogin(email: string, password: string): Promise<string | null> {
         try {
-            const response = await fetch('http://localhost:8888/api/login.php', {
+            const response = await fetch('http://localhost/api/login.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

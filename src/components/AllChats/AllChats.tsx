@@ -14,7 +14,7 @@ const AllChats: React.FC = () => {
     useEffect(() => {
         const fetchChatData = async () => {
             try {
-                const response = await fetch('http://localhost:8888/api/chats.php')
+                const response = await fetch('http://localhost/api/chats.php')
                 if (!response.ok) {
                     throw new Error('Failed to fetch chat data')
                 }

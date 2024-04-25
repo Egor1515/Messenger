@@ -10,7 +10,7 @@ const UserPost: React.FC = () => {
     useEffect(() => {
         const fetchUserPosts = async () => {
             try {
-                const response = await fetch("http://localhost:8888/api/user-posts.php");
+                const response = await fetch("http://localhost/api/user-posts.php");
                 if (response.ok) {
                     const data = await response.json();
                     console.log(typeof data)

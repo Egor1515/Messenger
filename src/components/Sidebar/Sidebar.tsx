@@ -43,7 +43,7 @@ const Sidebar: React.FC = () => {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const response = await fetch('http://localhost:8888/api/accounts.php');
+        const response = await fetch('http://localhost/api/accounts.php');
         if (!response.ok) {
           throw new Error('Failed to fetch accounts');
         }
