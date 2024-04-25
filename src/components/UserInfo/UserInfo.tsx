@@ -25,7 +25,7 @@ const UserInfo: React.FC = () => {
     return (
         <aside className="border flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-white-900 dark:border-gray-700">
             <a href="/" className="mx-auto">
-                <i className="fa-brands fa-react text-2xl text-orange-500"></i>
+                <i className="fa-brands fa-react text-2xl text-emerald-500"></i>
             </a>
 
             <div className="flex flex-col items-center mt-6 -mx-2">

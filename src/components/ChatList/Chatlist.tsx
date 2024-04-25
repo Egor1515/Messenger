@@ -32,7 +32,7 @@ const ChatList: React.FC = () => {
           key={chat.id}
           className={`flex justify-${index % 2 === 0 ? 'end' : 'start'} mt-5 ml-5 gap-2.5`}
         >
-          <div className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 ${index % 2 === 0 ? 'bg-orange-200' : 'bg-gray-200'} rounded-e-xl rounded-es-xl `}>
+          <div className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 ${index % 2 === 0 ? 'bg-emerald-200' : 'bg-gray-200'} rounded-e-xl rounded-es-xl `}>
             <div className='flex items-center space-x-2 rtl:space-x-reverse'>
               <span className='text-sm font-semibold text-gray-900 dark:text-white'>{chat.name}</span>
               <span className='text-sm font-normal text-gray-500 dark:text-gray-400'>{chat.time}</span>

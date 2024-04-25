@@ -64,9 +64,9 @@ const Authorize: React.FC = () => {
                         />
                         <button
                             type="submit"
-                            className="w-full py-3 mt-10 bg-orange-500 rounded-sm
+                            className="w-full py-3 mt-10 bg-emerald-500 rounded-sm
                             font-medium text-white uppercase
-                            focus:outline-none hover:bg-orange-600 hover:shadow-none"
+                            focus:outline-none hover:bg-emerald-600 hover:shadow-none"
                         >
                             Login
                         </button>
