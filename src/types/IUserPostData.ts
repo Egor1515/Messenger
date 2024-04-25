@@ -3,7 +3,7 @@ export interface IUserPostData {
     avatarUrl: string,
     postText: string,
     postedAt: string,
-    images: string,
+    content: string,
     likesCount: number,
     liked: boolean
 

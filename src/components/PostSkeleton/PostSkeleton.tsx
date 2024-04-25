@@ -14,7 +14,7 @@ const PostSkeleton: React.FC<{ onPost: (newPost: any) => void }> = ({ onPost }) 
             avatarUrl: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             postText: description,
             postedAt: new Date().toISOString(),
-            content: content,
+            content: title,
             likesCount: 0,
             liked: false
         };

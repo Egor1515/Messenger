@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IUserPostData } from "@/types/IUserPostData";
 
-
-
-
 const UserPost: React.FC = () => {
     const [userData, setUserData] = useState<IUserPostData[]>([]);
     
@@ -59,7 +56,7 @@ const UserPost: React.FC = () => {
                         <p className="text-sm leading-6 text-slate-600">{userData.postText}</p>
                     </div>
                     <div className="overflow-hidden rounded-xl max-h-[10rem]">
-                        <p> {userData.images}</p>
+                        <p> {userData.content}</p>
                     </div>
                     <div className="flex justify-between pt-5">
                         <button onClick={() => handleLikeToggle(index)}>
