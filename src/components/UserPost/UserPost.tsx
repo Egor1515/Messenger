@@ -32,10 +32,10 @@ const UserPost: React.FC = () => {
     };
 
     return (
-<div className="w-4/6 m-auto mt-4 mb-4 flex flex-col items-center bg-white-900">
+<div className=" m-auto mt-4 mb-4 flex flex-col items-center bg-white-900 w-full h-full">
             {userData.map((userData, index) => (
-                <div key={index} className="text-black border border-emerald-200 rounded-lg w-full mt-5 mx-5 md:w-[40rem] space-y-6 p-10 bg-white-800">
-                    <div className="flex space-x-4 items-center">
+                <div key={index} className="text-black border border-emerald-200 rounded-lg mt-5 mx-5 md:w-[40rem] space-y-6 p-10 bg-white-800">
+                    <div className="flex space-x-4 items-center ">
                         <div className="w-12 h-12">
                             <img alt="avatar" src={userData.avatarUrl} className="rounded-full w-full h-full object-cover" />
                         </div>

@@ -22,7 +22,7 @@ const AllChats: React.FC = () => {
                 const updatedChatData = data.map((chat:any) => ({
                     ...chat,
                     timestamp: formatDistanceToNow(new Date(chat.timestamp), { addSuffix: true }),
-                    unread: chat.unread === '1' ? true : false
+                
                 }));
                 setChatData(updatedChatData);
             } catch (error) {
