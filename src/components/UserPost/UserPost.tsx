@@ -10,8 +10,6 @@ const UserPost: React.FC = () => {
                 const response = await fetch("http://localhost/api/user-posts.php");
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(typeof data)
-                    console.log(data)
                     setUserData(data);
                 } else {
                     console.error("Failed to fetch user posts");

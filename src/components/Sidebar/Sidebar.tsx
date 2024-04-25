@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import AuthService from '../Authorize/AuthService';
 import { useNavigate } from 'react-router-dom'
 import { IAccount } from '@/types/IAccount';
 
